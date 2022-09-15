@@ -3,17 +3,25 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable, KeyListener {
-    public Node[] nodeSnake = new  Node[50];
+    // Seta o tamanho da cobrinha
+    public Node[] nodeSnake = new  Node[35];
 
     public boolean left, right, up, down;
+
+    public int score = 0;
+    // Criando a maçã
+    public int macaX = 0, macaY = 0;
+    // Velocidade da cobrinha de acordo com os pontos coletados
+    public int speed = 1;
 
     // Set o posissionamento do objeto na tela
     public Game(){
         this.setPreferredSize(new Dimension(480,480));
         for(int i = 0; i < nodeSnake.length; i++) {
-            nodeSnake[i] = new Node(10,10);
+            nodeSnake[i] = new Node(0,0);
         }
         this.addKeyListener(this);
     }
@@ -27,17 +35,24 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         // Implementa movimento
         if (right) {
-            nodeSnake[0].x++;
+            nodeSnake[0].x+=speed;
         }else if (up){
-            nodeSnake[0].y--;
-
-        }else if (left){
-            nodeSnake[0].x--;
+            nodeSnake[0].y-=speed;
 
         }else if (down){
-            nodeSnake[0].y++;
+            nodeSnake[0].y+=speed;
+
+        }else if (left){
+            nodeSnake[0].x-=speed;
 
         }
+        //Add Colisão
+        if(new  Rectangle(nodeSnake[0].x, nodeSnake[0].y, 10,10).intersects(new Rectangle(macaX, macaY, 10, 10)));
+        macaX = new Random().nextInt(480-10);
+        macaY = new Random().nextInt(480-10);
+        score++;
+        speed++;
+        System.out.println("Pontos: "+ score);
 
     }
 
@@ -53,8 +68,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
         g.fillRect(0,0,480,480);
         for (int i = 0; i < nodeSnake.length; i++) {
             g.setColor(Color.BLUE);
-            g.fillRect(nodeSnake[i].x, nodeSnake[i].y,50,50);
+            g.fillRect(nodeSnake[i].x, nodeSnake[i].y,10,10);
         }
+        // Colocando a Maçã na tela ( Cor e Tamanho )
+        g.setColor(Color.red);
+        g.fillRect(macaX, macaY, 10, 10);
+
         g.dispose();
         bs.show();
 
