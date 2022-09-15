@@ -69,6 +69,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         for (int i = 0; i < nodeSnake.length; i++) {
             g.setColor(Color.BLUE);
             g.fillRect(nodeSnake[i].x, nodeSnake[i].y,10,10);
+
         }
         // Colocando a Maçã na tela ( Cor e Tamanho )
         g.setColor(Color.red);
