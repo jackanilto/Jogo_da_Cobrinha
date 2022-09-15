@@ -3,9 +3,13 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
+    public Node[] nodeSnake = new  Node[10];
 
     public Game(){
         this.setPreferredSize(new Dimension(480,480));
+        for(int i = 0; i < nodeSnake.length; i++) {
+            nodeSnake[i] = new Node(0,0);
+        }
     }
 
     public void tick(){
@@ -21,6 +25,10 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         g.setColor(Color.black);
         g.fillRect(0,0,480,480);
+        for (int i = 0; i < nodeSnake.length; i++) {
+            g.setColor(Color.BLUE);
+            g.fillRect(nodeSnake[i].x, nodeSnake[i].y,10,10);
+        }
         g.dispose();
         bs.show();
 
