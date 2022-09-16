@@ -60,34 +60,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
             macaY = new Random().nextInt(480 - 10);
             score++;
             speed++;
-            System.out.println("Pontos:" + score);
-
-
-            //  for (int i = nodeSnake.length  - 1; i > 0; i--){
-            //      nodeSnake[i].x = nodeSnake[i-1].x;
-            //      nodeSnake[i].y = nodeSnake[i-1].y;
-            //  }
-
-            //  // Implementa movimento
-            //  if (right) {
-            //      nodeSnake[0].x+=speed;
-            //  }else if (up){
-            //      nodeSnake[0].y-=speed;
-
-            //  }else if (down){
-            //      nodeSnake[0].y+=speed;
-
-            //  }else if (left){
-            //      nodeSnake[0].x-=speed;
-
-            //  }
-            //  //Add Colisão
-            //    if(new  Rectangle(nodeSnake[0].x, nodeSnake[0].y, 10,10).intersects(new Rectangle(macaX, macaY, 10, 10)));
-            //    macaX = new Random().nextInt(480-10);
-            //    macaY = new Random().nextInt(480-10);
-            //    score++;
-            //    speed++;
-            //    System.out.println("Pontos: "+ score);
+            System.out.println("Pontos: " + score);
 
         }
     }
