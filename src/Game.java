@@ -26,34 +26,70 @@ public class Game extends Canvas implements Runnable, KeyListener {
         this.addKeyListener(this);
     }
 
-    public void tick(){
-        // Implementa o movimento do rabo da cobra acompanahndo o corpo
-        for (int i = nodeSnake.length  - 1; i > 0; i--){
-            nodeSnake[i].x = nodeSnake[i-1].x;
-            nodeSnake[i].y = nodeSnake[i-1].y;
+    public void tick() {
+        // Implementa o movimento do rabo da cobra acompanhado o corpo
+
+        for (int i = nodeSnake.length - 1; i > 0; i--) {
+            nodeSnake[i].x = nodeSnake[i - 1].x;
+            nodeSnake[i].y = nodeSnake[i - 1].y;
         }
 
-        // Implementa movimento
+        if (nodeSnake[0].x + 10 < 0) {
+            nodeSnake[0].x = 480;
+        } else if (nodeSnake[0].x >= 480) {
+            nodeSnake[0].x = -10;
+        }
+        if (nodeSnake[0].y + 10 < 0) {
+            nodeSnake[0].y = 240;
+        } else if (nodeSnake[0].y >= 480) {
+            nodeSnake[0].y = -10;
+        }
+
         if (right) {
-            nodeSnake[0].x+=speed;
-        }else if (up){
-            nodeSnake[0].y-=speed;
+            nodeSnake[0].x += speed;
+        } else if (up) {
+            nodeSnake[0].y -= speed;
+        } else if (down) {
+            nodeSnake[0].y += speed;
+        } else if (left) {
+            nodeSnake[0].x -= speed;
+        }
 
-        }else if (down){
-            nodeSnake[0].y+=speed;
+        if (new Rectangle(nodeSnake[0].x, nodeSnake[0].y, 10, 10).intersects(new Rectangle(macaX, macaY, 10, 10))) {
+            macaX = new Random().nextInt(480 - 10);
+            macaY = new Random().nextInt(480 - 10);
+            score++;
+            speed++;
+            System.out.println("Pontos:" + score);
 
-        }else if (left){
-            nodeSnake[0].x-=speed;
+
+            //  for (int i = nodeSnake.length  - 1; i > 0; i--){
+            //      nodeSnake[i].x = nodeSnake[i-1].x;
+            //      nodeSnake[i].y = nodeSnake[i-1].y;
+            //  }
+
+            //  // Implementa movimento
+            //  if (right) {
+            //      nodeSnake[0].x+=speed;
+            //  }else if (up){
+            //      nodeSnake[0].y-=speed;
+
+            //  }else if (down){
+            //      nodeSnake[0].y+=speed;
+
+            //  }else if (left){
+            //      nodeSnake[0].x-=speed;
+
+            //  }
+            //  //Add Colisão
+            //    if(new  Rectangle(nodeSnake[0].x, nodeSnake[0].y, 10,10).intersects(new Rectangle(macaX, macaY, 10, 10)));
+            //    macaX = new Random().nextInt(480-10);
+            //    macaY = new Random().nextInt(480-10);
+            //    score++;
+            //    speed++;
+            //    System.out.println("Pontos: "+ score);
 
         }
-        //Add Colisão
-        if(new  Rectangle(nodeSnake[0].x, nodeSnake[0].y, 10,10).intersects(new Rectangle(macaX, macaY, 10, 10)));
-        macaX = new Random().nextInt(480-10);
-        macaY = new Random().nextInt(480-10);
-        score++;
-        speed++;
-        System.out.println("Pontos: "+ score);
-
     }
 
     public void render(){
