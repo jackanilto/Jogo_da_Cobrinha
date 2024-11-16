@@ -56,5 +56,3 @@ Este projeto está licenciado sob a **MIT License**. Sinta-se à vontade para ut
 Contribuições são bem-vindas! Se você encontrou um bug ou tem uma sugestão para melhorias, abra um **issue** ou envie um **pull request**.
 
 ---
-
-Esse README agora explica em mais detalhes o funcionamento do jogo, as tecnologias utilizadas, como rodá-lo, e como jogar, além de trazer informações sobre como contribuir para o projeto.
